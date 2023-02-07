@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "267432089630",
+    "project_id": "ajmeraclasses-82744",
+    "storage_bucket": "ajmeraclasses-82744.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:267432089630:android:c2a6c6d14b670f5ca8b60f",
+        "android_client_info": {
+          "package_name": "com.example.ajmeraclasses"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "267432089630-uegbku2pd3mut52cb2luojs0h69ckhd1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC84fSZ6CjvpRTxvoVn2YEJ3B0FUclC1qY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "267432089630-uegbku2pd3mut52cb2luojs0h69ckhd1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
