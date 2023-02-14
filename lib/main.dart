@@ -11,9 +11,9 @@ import 'screens/worksheets.dart';
 Future<void> main() async {
 
   runApp(MaterialApp(
-      initialRoute: '/',
+      initialRoute: '/home',
       routes: {
-        '/': (context) => const LoadingScreen(),
+        '/loading': (context) => const LoadingScreen(),
         '/home': (context) => const Home(),
         '/worksheets': (context) => const Worksheets(),
         '/scores': (context) => const Scores(),
@@ -21,11 +21,28 @@ Future<void> main() async {
         '/messages': (context) => const Messages(),
       },
       theme: ThemeData(
+        textTheme: const TextTheme(
+          headlineMedium: TextStyle(
+            color: Colors.white
+          ),
+          headlineSmall: TextStyle(
+            color: Colors.white
+          ),
+        ),
           scaffoldBackgroundColor: const Color(0xFF001B3F),
           appBarTheme: const AppBarTheme(
               backgroundColor:Color(0xFF001B3F),
               foregroundColor: Colors.white,
           ),
+        // cardColor: const Color(0xFF002377),
+        primaryColor: const Color(0xFFA4C9FF),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            minimumSize: Size.zero,
+            foregroundColor: Colors.black,
+            backgroundColor: const Color(0xFFFFB960),
+          )
+        )
       )
   ));
 }
