@@ -9,7 +9,6 @@ import 'screens/worksheets.dart';
 
 
 Future<void> main() async {
-
   runApp(MaterialApp(
       initialRoute: '/home',
       routes: {
@@ -21,28 +20,37 @@ Future<void> main() async {
         '/messages': (context) => const Messages(),
       },
       theme: ThemeData(
-        textTheme: const TextTheme(
-          headlineMedium: TextStyle(
-            color: Colors.white
+          colorScheme: const ColorScheme(
+
+            brightness: Brightness.dark,
+            primary: Color(0xFFA4C9FF),
+            onPrimary: Color(0xFF00315D),
+            secondary: Color(0xFFFFB960),
+            onSecondary: Color(0xFF472A00),
+            error: Colors.red,
+            onError: Colors.white,
+            background: Color(0xFF00315D),
+            onBackground: Colors.white,
+            surface: Color(0xFF00315D),
+            onSurface: Colors.white,
+
           ),
-          headlineSmall: TextStyle(
-            color: Colors.white
-          ),
-        ),
-          scaffoldBackgroundColor: const Color(0xFF001B3F),
+          scaffoldBackgroundColor: const Color(0xFF00315D),
           appBarTheme: const AppBarTheme(
-              backgroundColor:Color(0xFF001B3F),
-              foregroundColor: Colors.white,
+            backgroundColor: Color(0xFF00315D),
+            foregroundColor: Colors.white,
           ),
-        // cardColor: const Color(0xFF002377),
-        primaryColor: const Color(0xFFA4C9FF),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            minimumSize: Size.zero,
-            foregroundColor: Colors.black,
-            backgroundColor: const Color(0xFFFFB960),
-          )
-        )
+          cardColor: const Color(0xFF00315D),
+          // primaryColor: const Color(0xFFA4C9FF),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ElevatedButton.styleFrom(
+                // textStyle: Theme.of(context).textTheme.titleMedium,
+                // textStyle: TextStyle(color: Colors.black),
+                minimumSize: Size.zero,
+                foregroundColor: Color(0xFF472A00),
+                backgroundColor: const Color(0xFFFFB960),
+              )
+          ),
       )
   ));
 }

@@ -6,45 +6,126 @@ class ScoreCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    TextTheme textTheme =Theme.of(context).textTheme;
-    return Container(
-      margin: EdgeInsets.only(right:screenWidth*0.05/2 ),
-      // padding: EdgeInsets.all(screenWidth*0.05/4),
-      width: screenWidth*0.65,
-      decoration: BoxDecoration(
-        color: Theme.of(context).primaryColor,
-        borderRadius: BorderRadius.all(Radius.circular(screenWidth*0.05/4))
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Container(
-            padding: EdgeInsets.zero,
-            height: screenWidth*0.3,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(screenWidth*0.05/4),topRight: Radius.circular(screenWidth*0.05/4)
-              ),
-              image: DecorationImage(
-                image: AssetImage('assets/bg-test.jpg'),
-                fit: BoxFit.cover
-              )
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(vertical:screenWidth*0.05/4,horizontal:screenWidth*0.025 ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+    TextTheme textTheme = Theme.of(context).textTheme;
+    ColorScheme colorScheme = Theme.of(context).colorScheme;
+    return IntrinsicHeight(
+      child: Container(
+        margin: EdgeInsets.only(top: screenWidth * 0.025),
+        padding: EdgeInsets.all(screenWidth * 0.025),
+        width: screenWidth * 0.95,
+        decoration: BoxDecoration(
+            color: colorScheme.primary,
+            borderRadius:
+                BorderRadius.all(Radius.circular(screenWidth * 0.05 / 4))),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Subject - Physics',style: textTheme.titleLarge,),
-                Text('Date of Test - DD/MM/YYYY',style: textTheme.titleLarge),
-                Text('Electricity and Magnetism',style: textTheme.titleLarge),
-                Text('You have scored XX/YY',style:textTheme.titleLarge)
+                Text(
+                  'IC10101', // ICse + 10 class + 0 for Maths + 01 for test number
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      color: colorScheme.onPrimary,
+                      fontWeight: FontWeight.lerp(
+                          FontWeight.w500, FontWeight.w600, 0.45)),
+                ),
+                Text(
+                  'TERM',
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        color: colorScheme.onPrimary,
+                      ),
+                )
               ],
             ),
-          ),
-
-        ],
+            SizedBox(
+              height: screenWidth * 0.01,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('22 March 2023',
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          color: colorScheme.onPrimary,
+                        )),
+                Text('Test Type',
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          color: colorScheme.onPrimary,
+                        )),
+              ],
+            ),
+            SizedBox(
+              height: screenWidth * 0.012,
+            ),
+            Row(
+              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: screenWidth*0.32,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text('Subject Name',
+                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                color: colorScheme.onPrimary,
+                              )),
+                      SizedBox(
+                        height: screenWidth * 0.004,
+                      ),
+                      Text('Physics',
+                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            color: colorScheme.onPrimary,fontWeight: FontWeight.lerp(
+                              FontWeight.w500, FontWeight.w600, 0.45)
+                          )),
+                    ],
+                  ),
+                ),
+                Container(
+                  width: screenWidth*0.275,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text('Maximum Marks',
+                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                color: colorScheme.onPrimary,
+                              )),
+                      SizedBox(
+                        height: screenWidth * 0.004,
+                      ),
+                      Text('30',
+                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            color: colorScheme.onPrimary,fontWeight: FontWeight.lerp(
+                              FontWeight.w500, FontWeight.w600, 0.45)
+                          )),
+                    ],
+                  ),
+                ),
+                Container(
+                  width: screenWidth*0.275,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text('Marks Scored',
+                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                color: colorScheme.onPrimary,
+                              ),
+                      textAlign: TextAlign.right,),
+                      SizedBox(
+                        height: screenWidth * 0.004,
+                      ),
+                      Text('20',
+                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            color: colorScheme.onPrimary,fontWeight: FontWeight.lerp(
+                              FontWeight.w500, FontWeight.w600, 0.45)
+                          ),
+                      textAlign: TextAlign.right,),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

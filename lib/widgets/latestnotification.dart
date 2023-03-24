@@ -22,7 +22,7 @@ class _LatestNotificationState extends State<LatestNotification> {
         width: screenWidth*0.9,
         height: screenWidth*0.08,
         decoration: BoxDecoration(
-          color: Theme.of(context).primaryColor,
+          color: Theme.of(context).colorScheme.primary,
           borderRadius: BorderRadius.all(
             Radius.circular(screenWidth*0.05/4)
           ),
@@ -31,12 +31,12 @@ class _LatestNotificationState extends State<LatestNotification> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text('You have scored 13/25 in Mathematics Test ',style: textTheme.bodyLarge,),
+            Text('You have scored 13/25 in Mathematics Test ',style: textTheme.bodyLarge?.copyWith(color: Theme.of(context).colorScheme.onPrimary,),),
             IconButton(padding:EdgeInsets.zero,onPressed: (){
               setState(() {
                 isVisible = !isVisible;
               });
-            }, icon: Icon(Icons.close),iconSize: 16,splashRadius: 16,)
+            }, icon: Icon(Icons.close,color: Theme.of(context).colorScheme.onPrimary,),iconSize: 16,splashRadius: 16,)
           ],
         ),
       ),

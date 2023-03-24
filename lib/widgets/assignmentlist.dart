@@ -24,7 +24,7 @@ class _AssignmentListState extends State<AssignmentList> {
                 padding: EdgeInsets.all(screenWidth * 0.05 / 4)),
             child: Text(
               'Check out all Assignments',
-              style: textTheme.titleLarge,
+              style: textTheme.titleMedium?.copyWith(color: Theme.of(context).colorScheme.onSecondary),
             ),
           )
         ],
