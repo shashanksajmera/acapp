@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../model/user.dart';
 
 class LatestNotification extends StatefulWidget {
   const LatestNotification({Key? key}) : super(key: key);
@@ -12,6 +15,7 @@ class _LatestNotificationState extends State<LatestNotification> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<CurrentUserData>(context).currentUser;
     double screenWidth = MediaQuery.of(context).size.width;
     TextTheme textTheme =Theme.of(context).textTheme;
     return Visibility(

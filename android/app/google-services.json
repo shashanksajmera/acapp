@@ -7,14 +7,22 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:267432089630:android:c2a6c6d14b670f5ca8b60f",
+        "mobilesdk_app_id": "1:267432089630:android:97d1cf3fe63b3e48a8b60f",
         "android_client_info": {
-          "package_name": "com.example.ajmeraclasses"
+          "package_name": "com.ajmeraclasses.ajmeraclassesapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "267432089630-uegbku2pd3mut52cb2luojs0h69ckhd1.apps.googleusercontent.com",
+          "client_id": "267432089630-k1v14ojg6fcd5tsbhj77bb7595gqpnn4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ajmeraclasses.ajmeraclassesapp",
+            "certificate_hash": "c15e01da5395735fca4c26fe4902ac5cae25da7f"
+          }
+        },
+        {
+          "client_id": "267432089630-k9lp56tt2dve3vgrj03t087bvp97gts1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,8 +35,15 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "267432089630-uegbku2pd3mut52cb2luojs0h69ckhd1.apps.googleusercontent.com",
+              "client_id": "267432089630-k9lp56tt2dve3vgrj03t087bvp97gts1.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "267432089630-7l8i0uoflpjuqa94abdj5mi6g2432m6v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ajmeraclasses.ajmeraclassesapp"
+              }
             }
           ]
         }
