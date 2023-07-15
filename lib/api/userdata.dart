@@ -17,7 +17,6 @@ class UserData{
     };
     firestore.collection('Users').doc(uid).set(user);
   }
-
   void updateUser(String? uid,String fieldName,dynamic val){
     firestore.collection("Users").doc(uid).update({
       fieldName : val

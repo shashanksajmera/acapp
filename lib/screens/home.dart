@@ -1,6 +1,8 @@
 import 'package:ajmeraclassesapp/model/user.dart';
+import 'package:ajmeraclassesapp/screens/admin/adminhome.dart';
 import 'package:ajmeraclassesapp/widgets/assignmentlist.dart';
 import 'package:ajmeraclassesapp/widgets/latestnotification.dart';
+import 'package:ajmeraclassesapp/widgets/questionoftheday.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,149 +17,18 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  Widget getQuestion() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Container(
-          padding: EdgeInsets.all(MediaQuery
-              .of(context)
-              .size
-              .width * 0.025),
-          width: MediaQuery
-              .of(context)
-              .size
-              .width * 0.95,
-          decoration: BoxDecoration(
-              color: Theme
-                  .of(context)
-                  .colorScheme
-                  .primary,
-              borderRadius: BorderRadius.all(Radius.circular(
-                  MediaQuery
-                      .of(context)
-                      .size
-                      .width * 0.05 / 4))),
-          child: Text(
-            'Question\nQuestion line2',
-            style: Theme
-                .of(context)
-                .textTheme
-                .titleLarge
-                ?.copyWith(color: Theme
-                .of(context)
-                .colorScheme
-                .onPrimary),
-          ),
-        ),
-        SizedBox(
-          height: MediaQuery
-              .of(context)
-              .size
-              .width * 0.02,
-        ),
-        ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                minimumSize: Size.zero,
-                textStyle: Theme
-                    .of(context)
-                    .textTheme
-                    .titleMedium,
-                padding: EdgeInsets.all(
-                    MediaQuery
-                        .of(context)
-                        .size
-                        .width * 0.05 / 4)),
-            onPressed: () {},
-            child: const Text('Option A')),
-        SizedBox(
-          height: MediaQuery
-              .of(context)
-              .size
-              .width * 0.02,
-        ),
-        ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                minimumSize: Size.zero,
-                textStyle: Theme
-                    .of(context)
-                    .textTheme
-                    .titleMedium,
-                padding: EdgeInsets.all(
-                    MediaQuery
-                        .of(context)
-                        .size
-                        .width * 0.05 / 4)),
-            onPressed: () {},
-            child: const Text('Option A')),
-        SizedBox(
-          height: MediaQuery
-              .of(context)
-              .size
-              .width * 0.02,
-        ),
-        ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                textStyle: Theme
-                    .of(context)
-                    .textTheme
-                    .titleMedium,
-                padding: EdgeInsets.all(
-                    MediaQuery
-                        .of(context)
-                        .size
-                        .width * 0.05 / 4)),
-            onPressed: () {},
-            child: const Text('Option A')),
-        SizedBox(
-          height: MediaQuery
-              .of(context)
-              .size
-              .width * 0.02,
-        ),
-        ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                textStyle: Theme
-                    .of(context)
-                    .textTheme
-                    .titleMedium,
-                padding: EdgeInsets.all(
-                    MediaQuery
-                        .of(context)
-                        .size
-                        .width * 0.05 / 4)),
-            onPressed: () {},
-            child: const Text('Option A')),
-      ],
-    );
-  }
+
 
   @override
   Widget build(BuildContext context) {
-    Map<String, dynamic>? user = Provider
-        .of<CurrentUserData>(context)
-        .currentUser;
+    Map<String, dynamic>? user = Provider.of<CurrentUserData>(context).currentUser;
     // print(user!['firstname']);
-    double screenWidth = MediaQuery
-        .of(context)
-        .size
-        .width;
-    double height = MediaQuery
-        .of(context)
-        .size
-        .height;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     // print('$screenWidth+$height');
-    TextTheme textTheme = Theme
-        .of(context)
-        .textTheme;
-    ColorScheme colorScheme = Theme
-        .of(context)
-        .colorScheme;
-      return Scaffold(
+    TextTheme textTheme = Theme.of(context).textTheme;
+    ColorScheme colorScheme = Theme.of(context).colorScheme;
+      return (user!['role'] == 'Admin') ? AdminHome() : Scaffold(
         // backgroundColor: Theme.of(context).colorScheme.background,
         appBar: AppBar(
           title: const Image(
@@ -264,7 +135,7 @@ class _HomeState extends State<Home> {
                     style: TextStyle(fontSize: 27, color: Colors.white),
                   ),
                 ),
-                getQuestion(),
+                QuestionOfTheDay(),
                 SizedBox(
                   height: screenWidth * 0.03,
                 ),
@@ -310,3 +181,4 @@ class _HomeState extends State<Home> {
 
   }
 }
+

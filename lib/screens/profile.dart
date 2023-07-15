@@ -1,4 +1,5 @@
 import 'package:ajmeraclassesapp/auth/login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -36,12 +37,18 @@ class _ProfileState extends State<Profile> {
               SizedBox(
                 height: screenWidth * 0.1,
               ),
-              CircleAvatar(
-                radius: screenWidth * 0.15,
-                backgroundColor: colorScheme.primary,
-                backgroundImage: const AssetImage(
-                  'assets/logo.png',
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: screenWidth * 0.15,
+                    backgroundColor: colorScheme.primary,
+                    backgroundImage: NetworkImage(
+                      FirebaseAuth.instance.currentUser!.photoURL!,
+                      scale: 0.0001
+                    ),
+                  ),
+                ],
               ),
               SizedBox(
                 height: screenWidth * 0.04,

@@ -1,5 +1,9 @@
-import 'package:ajmeraclassesapp/api/notificationsListener.dart';
+// import 'package:ajmeraclassesapp/api/notificationsListener.dart';
 import 'package:ajmeraclassesapp/model/user.dart';
+import 'package:ajmeraclassesapp/screens/admin/addtestscores.dart';
+import 'package:ajmeraclassesapp/screens/admin/manage.dart';
+import 'package:ajmeraclassesapp/screens/admin/manageclass.dart';
+import 'package:ajmeraclassesapp/screens/admin/register.dart';
 import 'package:ajmeraclassesapp/screens/login.dart';
 import 'package:ajmeraclassesapp/screens/profile.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +38,11 @@ Future<void> main() async {
           '/scores': (context) => const Scores(),
           '/chat': (context) => const Chat(),
           '/messages': (context) => const Messages(),
-          '/profile' : (context) => const Profile()
+          '/profile' : (context) => const Profile(),
+          '/manage' : (context) => const ManageStudents(),
+          '/manageClass' : (context) => const ManageClass(),
+          '/register' : (context) => const RegisterStudent(),
+          '/addtestscores' : (context) => const AddTestScores()
         },
         theme: ThemeData(
             colorScheme: const ColorScheme(

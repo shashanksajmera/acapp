@@ -14,11 +14,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "267432089630-k1v14ojg6fcd5tsbhj77bb7595gqpnn4.apps.googleusercontent.com",
+          "client_id": "267432089630-r89655toj9d3ea3u2h15349a5madgt5m.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.ajmeraclasses.ajmeraclassesapp",
-            "certificate_hash": "c15e01da5395735fca4c26fe4902ac5cae25da7f"
+            "certificate_hash": "ab65192e4001d5369939d86b10cd410a24978323"
           }
         },
         {
