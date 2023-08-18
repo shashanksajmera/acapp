@@ -1,10 +1,13 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 // import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class Assignment extends StatefulWidget {
-  const Assignment({Key? key}) : super(key: key);
-
+  const Assignment({Key? key,required this.file}) : super(key: key);
+  final File file;
   @override
   State<Assignment> createState() => _AssignmentState();
 }
@@ -21,7 +24,7 @@ class _AssignmentState extends State<Assignment> {
       appBar: AppBar(
         title: const Text('View Assignment'),
       ),
-      body: SfPdfViewer.network('https://drive.google.com/uc?export=view&id=1neuFD8mokG225c0ExEooiM-cFDhBPtl1'),
+      body: SfPdfViewer.file(widget.file),
     );
   }
 }

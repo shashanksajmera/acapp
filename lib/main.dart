@@ -1,6 +1,8 @@
 // import 'package:ajmeraclassesapp/api/notificationsListener.dart';
 import 'package:ajmeraclassesapp/model/user.dart';
+import 'package:ajmeraclassesapp/screens/admin/addassignment.dart';
 import 'package:ajmeraclassesapp/screens/admin/addtestscores.dart';
+import 'package:ajmeraclassesapp/screens/admin/allstudents.dart';
 import 'package:ajmeraclassesapp/screens/admin/manage.dart';
 import 'package:ajmeraclassesapp/screens/admin/manageclass.dart';
 import 'package:ajmeraclassesapp/screens/admin/register.dart';
@@ -17,10 +19,8 @@ import 'screens/messages.dart';
 import 'screens/scores.dart';
 import 'screens/worksheets.dart';
 
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -38,15 +38,16 @@ Future<void> main() async {
           '/scores': (context) => const Scores(),
           '/chat': (context) => const Chat(),
           '/messages': (context) => const Messages(),
-          '/profile' : (context) => const Profile(),
-          '/manage' : (context) => const ManageStudents(),
-          '/manageClass' : (context) => const ManageClass(),
-          '/register' : (context) => const RegisterStudent(),
-          '/addtestscores' : (context) => const AddTestScores()
+          '/profile': (context) => const Profile(),
+          '/manage': (context) => const ManageStudents(),
+          '/manageClass': (context) => const ManageClass(),
+          '/register': (context) => const RegisterStudent(),
+          '/addtestscores': (context) => const AddTestScores(),
+          '/addassignment': (context) => const AddAssignment(),
+          '/allstudents': (context) => const AllStudents()
         },
         theme: ThemeData(
-            colorScheme: const ColorScheme(
-
+          colorScheme: const ColorScheme(
               brightness: Brightness.dark,
               primary: Color(0xFFA4C9FF),
               onPrimary: Color(0xFF00315D),
@@ -59,29 +60,26 @@ Future<void> main() async {
               surface: Color(0xFF00315D),
               onSurface: Colors.white,
               primaryContainer: Color(0xFF004884),
-              onPrimaryContainer: Colors.white
-
-            ),
-            scaffoldBackgroundColor: const Color(0xFF00315D),
-            appBarTheme: const AppBarTheme(
-              elevation: 0,
-              scrolledUnderElevation: 2.0,
-              backgroundColor: Color(0xFF00315D),
-              foregroundColor: Colors.white,
-            ),
-            cardColor: const Color(0xFF00315D),
-            // primaryColor: const Color(0xFFA4C9FF),
-            elevatedButtonTheme: ElevatedButtonThemeData(
-                style: ElevatedButton.styleFrom(
-                  // textStyle: Theme.of(context).textTheme.titleMedium,
-                  // textStyle: TextStyle(color: Colors.black),
-                  minimumSize: Size.zero,
-                  foregroundColor: Color(0xFF472A00),
-                  backgroundColor: const Color(0xFFFFB960),
-                )
-            ),
-        )
-    ),
+              onPrimaryContainer: Colors.white,
+              tertiary: Color(0xFF05462D),
+              onTertiary: Colors.white),
+          scaffoldBackgroundColor: const Color(0xFF00315D),
+          appBarTheme: const AppBarTheme(
+            elevation: 0,
+            scrolledUnderElevation: 2.0,
+            backgroundColor: Color(0xFF00315D),
+            foregroundColor: Colors.white,
+          ),
+          cardColor: const Color(0xFF00315D),
+          // primaryColor: const Color(0xFFA4C9FF),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ElevatedButton.styleFrom(
+            // textStyle: Theme.of(context).textTheme.titleMedium,
+            // textStyle: TextStyle(color: Colors.black),
+            minimumSize: Size.zero,
+            foregroundColor: Color(0xFF472A00),
+            backgroundColor: const Color(0xFFFFB960),
+          )),
+        )),
   ));
 }
-

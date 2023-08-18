@@ -190,10 +190,10 @@ class _AdminHomeState extends State<AdminHome> {
                   style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.all(screenWidth * 0.05 / 4)),
                   onPressed: () {
-                    Navigator.push(context, new MaterialPageRoute(builder: (context) => Assignment()));
+                    Navigator.pushNamed(context, '/addassignment');
                   },
                   child: Text(
-                    'Add Assignemnts',
+                    'Add Assignments',
                     style: textTheme.titleLarge?.copyWith(
                         color: Theme.of(context).colorScheme.onSecondary),
                   )),

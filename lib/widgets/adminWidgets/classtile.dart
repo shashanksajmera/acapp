@@ -85,7 +85,11 @@ class _ClassTileState extends State<ClassTile> {
                   style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.all(screenWidth * 0.05 / 4)),
                   onPressed: () {
-                    // Navigator.pushNamed(context, '/manage');
+                    Navigator.pushNamed(context, '/allstudents',arguments: {
+                      'class' : widget.grade,
+                      'board' : widget.board
+                      // 'board' :
+                    });
                   },
                   child: Text(
                     'Edit Student Info',

@@ -19,7 +19,7 @@ class _AssignmentCardState extends State<AssignmentCard> {
 
     return GestureDetector(
       onTap: (){
-        Navigator.push(context, new MaterialPageRoute(builder: (context) => Assignment()));
+        // Navigator.push(context, new MaterialPageRoute(builder: (context) => Assignment(file : 'https://drive.google.com/file/d/1neuFD8mokG225c0ExEooiM-cFDhBPtl1/view?usp=sharing')));
       },
       child: Container(
         padding: EdgeInsets.only(left: screenWidth * 0.01),

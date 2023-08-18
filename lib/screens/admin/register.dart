@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:ajmeraclassesapp/api/student-api.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -55,6 +58,24 @@ class _RegisterStudentState extends State<RegisterStudent> {
     });
     // print(code);
   }
+  String generateCodeByCsv(String first,String last,String board,String classValue) {
+    // code = first[0] + last[0];
+    Map<String, String> boardCode = {'ICSE': 'IC', 'CBSE': 'CB', 'Comp': 'CE'};
+    Map<String, String> classCode = {
+      'Class 10': '10',
+      'Class 9': '09',
+      'Class 8': '08',
+      'Class 7': '07',
+      'Class 6': '06',
+      'Class 5': '05'
+    };
+    String code = first[0].toUpperCase() +
+          last[0].toUpperCase() +
+          boardCode[board]! +
+          classCode[classValue]!;
+    // print(code);
+    return code;
+  }
 
   void saveStudent() {
     // print('Saving data');
@@ -102,7 +123,29 @@ class _RegisterStudentState extends State<RegisterStudent> {
               onPressed: () {
                 Navigator.popAndPushNamed(context, '/register');
               },
-              icon: Icon(Icons.add))
+              icon: Icon(Icons.add)),
+          IconButton(
+              onPressed: () async {
+               FilePickerResult? result = await FilePicker.platform.pickFiles();
+               File students = File(result!.paths.first!);
+               List<String> studentsList = (await students.readAsString()).split('\n');
+               for(int i=1;i<studentsList.length;i++){
+                 var data = studentsList[i].split(',');
+                 var name = data[1].split(' ');
+                 String codeL = generateCodeByCsv(name[0], name[1], data[3], data[2]);
+                 Map<String, String> studentData = {
+                   'firstname': name[0],
+                   'lastname': name[1],
+                   'phoneNumber': data[4],
+                   'board': data[3],
+                   'class': data[2],
+                   'fees': data[5],
+                   'code': codeL,
+                 };
+                 StudentApi.saveStudent(studentData);
+               }
+              },
+              icon: Icon(Icons.upload))
         ],
       ),
       body: SingleChildScrollView(
