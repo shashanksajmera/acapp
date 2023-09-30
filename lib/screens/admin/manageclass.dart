@@ -9,7 +9,8 @@ class ManageClass extends StatefulWidget {
 }
 
 class _ManageClassState extends State<ManageClass> {
-
+  late String grade;
+  late String board;
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +19,11 @@ class _ManageClassState extends State<ManageClass> {
     TextTheme textTheme = Theme.of(context).textTheme;
     ColorScheme colorScheme = Theme.of(context).colorScheme;
     var arguments = ModalRoute.of(context)?.settings.arguments as Map;
+    grade = "${arguments["class"]}";
+    board = arguments["board"];
     return Scaffold(
       appBar: AppBar(
-        title: Text('${arguments['board']} Class ${arguments['class']}'),
+        title: Text('${board} Class ${grade}'),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -36,7 +39,7 @@ class _ManageClassState extends State<ManageClass> {
                     style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.all(screenWidth * 0.05 / 4)),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/manage');
+                      Navigator.pushNamed(context, '/register');
                     },
                     child: Text(
                       'Add Student',
@@ -52,7 +55,11 @@ class _ManageClassState extends State<ManageClass> {
                     style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.all(screenWidth * 0.05 / 4)),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/manage');
+                      Navigator.pushNamed(context, '/allstudents',arguments: {
+                        'class' : grade,
+                        'board' : board
+                        // 'board' :
+                      });
                     },
                     child: Text(
                       'Edit Student Info',
@@ -83,7 +90,7 @@ class _ManageClassState extends State<ManageClass> {
                     style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.all(screenWidth * 0.05 / 4)),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/manage');
+                      Navigator.pushNamed(context, '/addtestscores');
                     },
                     child: Text(
                       'Add Scores',
@@ -98,7 +105,7 @@ class _ManageClassState extends State<ManageClass> {
                     style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.all(screenWidth * 0.05 / 4)),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/manage');
+                      Navigator.pushNamed(context, '/addassignment');
                     },
                     child: Text(
                       'Add Assignments',

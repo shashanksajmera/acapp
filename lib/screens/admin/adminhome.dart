@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:ajmeraclassesapp/widgets/questionoftheday.dart';
 import 'package:ajmeraclassesapp/widgets/scorecard.dart';
 import 'package:ajmeraclassesapp/widgets/scoregrid.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 // import '../../model/assignment.dart';
@@ -191,6 +194,7 @@ class _AdminHomeState extends State<AdminHome> {
                       padding: EdgeInsets.all(screenWidth * 0.05 / 4)),
                   onPressed: () {
                     Navigator.pushNamed(context, '/addassignment');
+                    // Navigator.push(context, new MaterialPageRoute(builder: (context) => Assignment(file: File('assets/sample2.pdf'))));
                   },
                   child: Text(
                     'Add Assignments',

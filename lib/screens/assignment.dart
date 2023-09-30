@@ -20,6 +20,7 @@ class _AssignmentState extends State<Assignment> {
     // print('$screenWidth+$height');
     TextTheme textTheme = Theme.of(context).textTheme;
     ColorScheme colorScheme = Theme.of(context).colorScheme;
+    // print(widget.file.path);
     return Scaffold(
       appBar: AppBar(
         title: const Text('View Assignment'),
@@ -28,4 +29,3 @@ class _AssignmentState extends State<Assignment> {
     );
   }
 }
-// https://drive.google.com/file/d/1neuFD8mokG225c0ExEooiM-cFDhBPtl1/view?usp=sharing

@@ -47,6 +47,9 @@ Future<void> main() async {
           '/allstudents': (context) => const AllStudents()
         },
         theme: ThemeData(
+          textTheme: TextTheme().apply(
+            fontFamily: 'Roboto'
+          ),
           colorScheme: const ColorScheme(
               brightness: Brightness.dark,
               primary: Color(0xFFA4C9FF),

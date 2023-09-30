@@ -107,7 +107,7 @@ class _StudentTileState extends State<StudentTile> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(widget.student != null ? widget.student!.name : "${widget.studentCode!.firstname}  ${widget.studentCode!.lastname}",
+              Text(widget.student != null ? widget.student!.name : "${widget.studentCode!.firstname} ${widget.studentCode!.lastname}",
                 style: textTheme.titleLarge!.copyWith(
                   color: colorScheme.onPrimary
                 ),
@@ -133,16 +133,27 @@ class _StudentTileState extends State<StudentTile> {
           if (widget.student == null) ElevatedButton.icon(
               icon: FaIcon(FontAwesomeIcons.whatsapp),
               style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF25d366),
+                foregroundColor: Theme.of(context).colorScheme.onTertiary,
+                  backgroundColor: Theme.of(context).colorScheme.tertiary,
                   padding: EdgeInsets.all(screenWidth * 0.05 / 4)),
               onPressed: () {
                 launchUrl(Uri.parse('whatsapp://send?phone=91${widget.studentCode?.phone}&text=HelloWorld'));
               },
-              label: Text('Share on Whatsapp',
+              label: Text('Share on WhatsApp',
                   style: textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.w500,
-                      color: Theme.of(context).colorScheme.onSecondary))
-          ) else Container()
+                      color: Theme.of(context).colorScheme.onTertiary))
+          ) else
+            ElevatedButton(
+              onPressed: (){},
+              style: ElevatedButton.styleFrom(
+                  foregroundColor: Theme.of(context).colorScheme.onTertiary,
+                  backgroundColor: Theme.of(context).colorScheme.tertiary,
+                  padding: EdgeInsets.all(screenWidth * 0.05 / 4)),
+              child: Text('Sent Reminder on WhatsApp',
+        style: textTheme.titleLarge?.copyWith(
+    fontWeight: FontWeight.w500,
+    color: Theme.of(context).colorScheme.onTertiary)))
         ],
       )
     );
