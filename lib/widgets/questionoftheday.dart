@@ -20,7 +20,7 @@ class _QuestionOfTheDayState extends State<QuestionOfTheDay> {
         ),
         ElevatedButton(
             style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF75AEF8),
+                backgroundColor: const Color(0xFF75AEF8),
                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 minimumSize: Size.zero,
                 textStyle: Theme.of(context).textTheme.titleMedium,

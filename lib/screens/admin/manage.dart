@@ -25,42 +25,67 @@ class _ManageStudentsState extends State<ManageStudents> {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Manage Students'),
+          title: const Text('Manage Students'),
+          bottom: TabBar(
+            labelStyle: TextStyle.lerp(textTheme.titleMedium, textTheme.titleSmall, 0.3),
+            labelColor: colorScheme.onBackground,
+            unselectedLabelStyle: TextStyle.lerp(textTheme.titleMedium, textTheme.titleSmall, 0.3),
+            unselectedLabelColor: colorScheme.onBackground.withOpacity(0.7),
+            indicatorWeight: 3.0,
+            indicatorSize: TabBarIndicatorSize.tab,
+              tabs: const <Tab>[
+                Tab(
+                  text: 'ICSE',
+                  // child: Text(
+                  //   'ICSE',
+                  //   style: textTheme.titleMedium,
+                  // ),
+                ),
+                Tab(
+                  text: 'CBSE',
+                ),
+                Tab(
+                  text: 'Competitive',
+
+                )
+              ]),
       ),
         body: Column(
           children: [
-            TabBar(
-                tabs: <Tab>[
-              Tab(
-                // text: 'Regular',
-                child: Text(
-                  'ICSE',
-                  style: textTheme.titleMedium,
-                ),
-              ),
-              Tab(
-                // text: 'Regular',
-                child: Text(
-                  'CBSE',
-                  style: textTheme.titleMedium,
-                ),
-              ),
-              Tab(
-                child: Text(
-                  'Competitive',
-                  style: textTheme.titleMedium,
-                ),
-              )
-            ]),
-            SizedBox(
-                height: screenWidth*0.03
-            ),
+            // TabBar(
+            //     tabs: <Tab>[
+            //   Tab(
+            //     // text: 'Regular',
+            //     child: Text(
+            //       'ICSE',
+            //       style: textTheme.titleMedium,
+            //     ),
+            //   ),
+            //   Tab(
+            //     // text: 'Regular',
+            //     child: Text(
+            //       'CBSE',
+            //       style: textTheme.titleMedium,
+            //     ),
+            //   ),
+            //   Tab(
+            //     child: Text(
+            //       'Competitive',
+            //       style: textTheme.titleMedium,
+            //     ),
+            //   )
+            // ]),
+            // SizedBox(
+            //     height: screenWidth*0.03
+            // ),
             Expanded(
-              child: Padding(
-                padding: EdgeInsets.all(screenWidth*0.05),
+                // padding: EdgeInsets.symmetric(vertical :screenWidth*0.05),
                 child: TabBarView(children: [
                   ListView(
                     children: [
+                      SizedBox(
+                        height: screenWidth*0.05,
+                      ),
                       for(int i=0;i<classes.length;i++)
                         ClassTile(grade: classes[i],board: 'ICSE',),
 
@@ -68,6 +93,9 @@ class _ManageStudentsState extends State<ManageStudents> {
                   ),
                   ListView(
                     children: [
+                      SizedBox(
+                        height: screenWidth*0.05,
+                      ),
                       for(int i=0;i<classes.length;i++)
                         ClassTile(grade: classes[i],board: 'CBSE',),
 
@@ -75,6 +103,9 @@ class _ManageStudentsState extends State<ManageStudents> {
                   ),
                   ListView(
                     children: [
+                      SizedBox(
+                        height: screenWidth*0.05,
+                      ),
                       for(int i=0;i<classes.length;i++)
                         ClassTile(grade : classes[i],board: 'COMP',),
 
@@ -82,7 +113,7 @@ class _ManageStudentsState extends State<ManageStudents> {
                   )
                 ]),
               ),
-            ),
+
           ],
         ),
 

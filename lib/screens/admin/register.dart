@@ -98,9 +98,9 @@ class _RegisterStudentState extends State<RegisterStudent> {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text('OK'))
+                  child: const Text('OK'))
             ],
-            title: Text('Student Saved'),
+            title: const Text('Student Saved'),
           );
         });
     setState(() {
@@ -117,13 +117,13 @@ class _RegisterStudentState extends State<RegisterStudent> {
     ColorScheme colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Register New Student'),
+        title: const Text('Register New Student'),
         actions: [
           IconButton(
               onPressed: () {
                 Navigator.popAndPushNamed(context, '/register');
               },
-              icon: Icon(Icons.add)),
+              icon: const Icon(Icons.add)),
           IconButton(
               onPressed: () async {
                FilePickerResult? result = await FilePicker.platform.pickFiles();
@@ -145,12 +145,12 @@ class _RegisterStudentState extends State<RegisterStudent> {
                  StudentApi.saveStudent(studentData);
                }
               },
-              icon: Icon(Icons.upload))
+              icon: const Icon(Icons.upload))
         ],
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(screenWidth * 0.05),
+          padding: EdgeInsets.symmetric(vertical : screenWidth * 0.025,horizontal:screenWidth * 0.05 ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -167,12 +167,14 @@ class _RegisterStudentState extends State<RegisterStudent> {
                       height: screenWidth * 0.02,
                     ),
                     Row(
+                      // crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         SizedBox(
-                          height: screenWidth * 0.1,
+                          // height: screenWidth * 0.15,
                           width: screenWidth * 0.44,
                           child: TextFormField(
+                            // scrollPadding: EdgeInsets.zero,
                             textAlignVertical: TextAlignVertical.bottom,
                             controller: firstnameController,
                             focusNode: firstname,
@@ -180,29 +182,41 @@ class _RegisterStudentState extends State<RegisterStudent> {
                               firstname.unfocus();
                             },
                             validator: (value) =>
-                                (value!.isEmpty) ? 'Enter Name' : null,
+                                (value!.isEmpty) ? 'Enter First Name' : null,
                             cursorColor: colorScheme.onPrimary,
                             style: TextStyle(color: colorScheme.onPrimary),
                             decoration: InputDecoration(
+                              contentPadding: EdgeInsets.symmetric(vertical : screenWidth*0.02,horizontal: screenWidth*0.03),
+                              isDense: true,
+                                focusedErrorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: colorScheme.onPrimary)),
+                                errorBorder:  OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: colorScheme.onPrimary)),
                                 focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: colorScheme.onPrimary)),
                                 enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: colorScheme.onPrimary)),
-                                hintText: 'First Name',
-                                hintStyle:
-                                    TextStyle(color: colorScheme.onPrimary),
+                                labelText: 'First Name',
+                                labelStyle: TextStyle(color: colorScheme.onPrimary,fontWeight: FontWeight.w500),
+                                floatingLabelBehavior: FloatingLabelBehavior.never,
                                 // icon: const Icon(Icons.person),
                                 filled: true,
                                 hoverColor: colorScheme.onPrimary,
                                 focusColor: colorScheme.onPrimary,
-                                // label: Text('First Name'),
+                                // constraints: BoxConstraints(
+                                //   minHeight: screenWidth *0.1,
+                                //   maxWidth: screenWidth* 0.44,
+                                //   maxHeight: screenWidth * 0.1,
+                                // ),
                                 fillColor: colorScheme.primary),
                           ),
                         ),
                         SizedBox(
-                          height: screenWidth * 0.1,
+                          // height: screenWidth * 0.15,
                           width: screenWidth * 0.44,
                           child: TextFormField(
                             textAlignVertical: TextAlignVertical.bottom,
@@ -212,23 +226,34 @@ class _RegisterStudentState extends State<RegisterStudent> {
                               lastname.unfocus();
                             },
                             validator: (value) =>
-                                (value!.isEmpty) ? 'Enter Name' : null,
+                                (value!.isEmpty) ? 'Enter  Last Name' : null,
                             cursorColor: colorScheme.onPrimary,
                             style: TextStyle(color: colorScheme.onPrimary),
                             decoration: InputDecoration(
+                                contentPadding: EdgeInsets.symmetric(vertical : screenWidth*0.02,horizontal: screenWidth*0.03),
+                                isDense: true,
+                              focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: colorScheme.onPrimary)),
+                                errorBorder:  OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: colorScheme.onPrimary)),
                                 focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: colorScheme.onPrimary)),
                                 enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: colorScheme.onPrimary)),
-                                hintText: 'Last Name',
+                                // hintText: 'Last Name',
                                 hintStyle:
                                     TextStyle(color: colorScheme.onPrimary),
                                 // icon: const Icon(Icons.person),
                                 filled: true,
                                 hoverColor: colorScheme.onPrimary,
                                 focusColor: colorScheme.onPrimary,
+                                labelText: 'Last Name',
+                                labelStyle: TextStyle(color: colorScheme.onPrimary,fontWeight: FontWeight.w500),
+                                floatingLabelBehavior: FloatingLabelBehavior.never,
                                 // label: Text('First Name'),
                                 fillColor: colorScheme.primary),
                           ),
@@ -243,11 +268,11 @@ class _RegisterStudentState extends State<RegisterStudent> {
                       children: [
                         Text(
                           'Class',
-                          style: textTheme.titleLarge,
+                          style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.3),
                         ),
                         Container(
                           padding: EdgeInsets.all(screenWidth * 0.025),
-                          width: screenWidth * 0.26,
+                          width: screenWidth * 0.27,
                           height: screenWidth * 0.1,
                           decoration: BoxDecoration(
                               color: colorScheme.primary,
@@ -275,7 +300,7 @@ class _RegisterStudentState extends State<RegisterStudent> {
                               classValue = newValue!;
                               setState(() {
                                 classValue;
-                                print(classValue);
+                                // print(classValue);
                               });
                             },
                             items: classes
@@ -296,12 +321,12 @@ class _RegisterStudentState extends State<RegisterStudent> {
                     ),
                     Text(
                       'Board',
-                      style: textTheme.titleLarge,
+                      style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.3),
                     ),
-                    Container(
+                    SizedBox(
                       height: screenWidth * 0.1,
                       child: RadioListTile<String>(
-                        title: Text("ICSE"),
+                        title: const Text("ICSE"),
                         value: "ICSE",
                         groupValue: board,
                         onChanged: (value) {
@@ -312,10 +337,10 @@ class _RegisterStudentState extends State<RegisterStudent> {
                         contentPadding: EdgeInsets.zero,
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       height: screenWidth * 0.1,
                       child: RadioListTile<String>(
-                        title: Text("CBSE"),
+                        title: const Text("CBSE"),
                         value: "CBSE",
                         groupValue: board,
                         onChanged: (value) {
@@ -326,10 +351,10 @@ class _RegisterStudentState extends State<RegisterStudent> {
                         contentPadding: EdgeInsets.zero,
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       height: screenWidth * 0.1,
                       child: RadioListTile<String>(
-                        title: Text("Competative Exams"),
+                        title: const Text("Competative Exams"),
                         value: "Comp",
                         groupValue: board,
                         onChanged: (value) {
@@ -344,14 +369,18 @@ class _RegisterStudentState extends State<RegisterStudent> {
                       height: screenWidth * 0.03,
                     ),
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          'Phone Number',
-                          style: textTheme.titleLarge,
+                        Container(
+                          padding: EdgeInsets.only(top: screenWidth*0.01),
+                          child: Text(
+                            'Phone Number',
+                            style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.3),
+                          ),
                         ),
                         SizedBox(
-                          height: screenWidth * 0.1,
+                          // height: screenWidth * 0.1,
                           width: screenWidth * 0.5,
                           child: TextFormField(
                             textAlignVertical: TextAlignVertical.bottom,
@@ -361,11 +390,12 @@ class _RegisterStudentState extends State<RegisterStudent> {
                               phoneNumber.unfocus();
                             },
                             validator: (value) {
-                              if (value == null) {
+                              // print(value!.length);
+                              if (value!.isEmpty) {
                                 return 'Enter Phone Number';
                               }
 
-                              if (value?.length != 10) {
+                              if (value.length != 10 && value.isNotEmpty) {
                                 return 'Mobile Number must be of 10 digit';
                               } else {
                                 return null;
@@ -374,15 +404,23 @@ class _RegisterStudentState extends State<RegisterStudent> {
                             cursorColor: colorScheme.onPrimary,
                             style: TextStyle(color: colorScheme.onPrimary),
                             decoration: InputDecoration(
+                                contentPadding: EdgeInsets.symmetric(vertical : screenWidth*0.02,horizontal: screenWidth*0.03),
+                                isDense: true,
+                                focusedErrorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: colorScheme.onPrimary)),
+                                errorBorder:  OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: colorScheme.onPrimary)),
                                 focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: colorScheme.onPrimary)),
                                 enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: colorScheme.onPrimary)),
-                                hintText: 'Phone Number',
-                                hintStyle:
-                                    TextStyle(color: colorScheme.onPrimary),
+                                labelText: 'Phone Number',
+                                labelStyle: TextStyle(color: colorScheme.onPrimary,fontWeight: FontWeight.w500),
+                                floatingLabelBehavior: FloatingLabelBehavior.never,
                                 // icon: const Icon(Icons.person),
                                 filled: true,
                                 hoverColor: colorScheme.onPrimary,
@@ -401,7 +439,7 @@ class _RegisterStudentState extends State<RegisterStudent> {
                       children: [
                         Text(
                           'Fees',
-                          style: textTheme.titleLarge,
+                          style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.3),
                         ),
                         SizedBox(
                           height: screenWidth * 0.1,
@@ -422,9 +460,9 @@ class _RegisterStudentState extends State<RegisterStudent> {
                                 enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: colorScheme.onPrimary)),
-                                hintText: 'Fees',
-                                hintStyle:
-                                    TextStyle(color: colorScheme.onPrimary),
+                                labelText: 'Fees',
+                                labelStyle: TextStyle(color: colorScheme.onPrimary,fontWeight: FontWeight.w500),
+                                floatingLabelBehavior: FloatingLabelBehavior.never,
                                 // icon: const Icon(Icons.person),
                                 filled: true,
                                 hoverColor: colorScheme.onPrimary,
@@ -471,7 +509,7 @@ class _RegisterStudentState extends State<RegisterStudent> {
                                 }
                               },
                               child: Text('Generate Code',
-                                  style: textTheme.titleLarge?.copyWith(
+                                  style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7)?.copyWith(
                                       fontWeight: FontWeight.w500,
                                       color: Theme.of(context)
                                           .colorScheme
@@ -505,31 +543,30 @@ class _RegisterStudentState extends State<RegisterStudent> {
                           behavior: SnackBarBehavior.floating,
                           // margin: EdgeInsets.all(screenWidth*0.05),
                           // elevation: 20,
-                          duration: Duration(milliseconds: 1500),
+                          duration: const Duration(milliseconds: 1500),
                           content: Text('Generate Code First',
-                              style: textTheme.bodyMedium
-                                  ?.copyWith(color: Colors.white)),
+                              style: textTheme.bodySmall?.copyWith(color: Colors.white)),
                         );
                         ScaffoldMessenger.of(context).showSnackBar(snackbar);
                       }
                     }
                   },
                   child: Text('Save Student',
-                      style: textTheme.titleLarge?.copyWith(
+                      style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7)?.copyWith(
                           fontWeight: FontWeight.w500,
                           color: Theme.of(context).colorScheme.onSecondary))),
               Visibility(
                 visible: saved,
                 child: ElevatedButton.icon(
-                  icon: FaIcon(FontAwesomeIcons.whatsapp),
+                  icon: const FaIcon(FontAwesomeIcons.whatsapp),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF25d366),
+                      backgroundColor: const Color(0xFF25d366),
                         padding: EdgeInsets.all(screenWidth * 0.05 / 4)),
                     onPressed: () {
                       launchUrl(Uri.parse('whatsapp://send?phone=91$phone&text=HelloWorld'));
                     },
                     label: Text('Share on Whatsapp',
-                        style: textTheme.titleLarge?.copyWith(
+                        style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7)?.copyWith(
                             fontWeight: FontWeight.w500,
                             color: Theme.of(context).colorScheme.onSecondary))),
               )

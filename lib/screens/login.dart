@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+  const Login({super.key});
 
   @override
   State<Login> createState() => _LoginState();
@@ -57,7 +57,7 @@ class _LoginState extends State<Login> {
                   final currentUser = FirebaseAuth.instance.currentUser;
                   DocumentSnapshot doc = await FirebaseFirestore.instance.collection('Users').doc(currentUser?.uid).get();
                   if(!doc.exists) {
-                    UserData().createUser(currentUser?.uid);
+                    await UserData().createUser(currentUser?.uid);
                   }
                   final userData = doc.data() as Map<String,dynamic>;
                   if(context.mounted){

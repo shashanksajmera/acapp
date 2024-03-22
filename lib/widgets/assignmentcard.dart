@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../screens/assignment.dart';
 
 class AssignmentCard extends StatefulWidget {
-  const AssignmentCard({Key? key, this.isSubmitted = false}) : super(key: key);
+  const AssignmentCard({super.key, this.isSubmitted = false});
   final bool isSubmitted;
 
   @override
@@ -43,7 +42,7 @@ class _AssignmentCardState extends State<AssignmentCard> {
             ),
             Text(
               'Electricity and Magnetism',
-              style: textTheme.titleMedium?.copyWith(color: colorScheme.onPrimary),
+              style: TextStyle.lerp(textTheme.titleSmall, textTheme.titleMedium, 0.4)?.copyWith(color: colorScheme.onPrimary),
             ),
             SizedBox(
               width: screenWidth * 0.03,
@@ -56,8 +55,8 @@ class _AssignmentCardState extends State<AssignmentCard> {
                   borderRadius:
                       BorderRadius.all(Radius.circular(screenWidth * 0.03)),
                   color: widget.isSubmitted
-                      ? Color(0xFF005D14)
-                      : Color(0xFF93000A)),
+                      ? const Color(0xFF005D14)
+                      : const Color(0xFF93000A)),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -70,13 +69,14 @@ class _AssignmentCardState extends State<AssignmentCard> {
                 ],
               ),
             ),
+            Spacer(),
             IconButton(
               padding: EdgeInsets.zero,
               onPressed: () {},
-              icon: Icon(Icons.arrow_forward_ios),
+              icon: const Icon(Icons.arrow_forward_ios),
               iconSize: 16,
               splashRadius: 16,
-              color: Color(0xff00315d),
+              color: const Color(0xff00315d),
             )
           ],
         ),

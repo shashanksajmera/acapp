@@ -23,11 +23,13 @@ class _AllStudentsState extends State<AllStudents> {
     var codeLists = await AdminApi.fetchStudentsfromCode(board, grade);
     var studentsList = getList.map((doc){
       var data = doc.data() as Map<String,dynamic>;
-      // print(data);
+      print(data);
       return Student(
-          name: data['name']!,
+          name: data['firstname']! + " " + data['lastname'],
           grade: data['class']!,
           board: data['board']!,
+          fees: data['fees'],
+          phone: data['phoneNumber'],
           uid: doc.id
       );
     }).toList();
@@ -40,12 +42,20 @@ class _AllStudentsState extends State<AllStudents> {
           code: data['code'],
           lastname: data['lastname'],
           firstname: data['firstname'],
-      fees : data['fees'],
-      phone : data['phoneNumber']);
+          fees : data['fees'],
+          phone : data['phoneNumber']);
     }).toList();
     setState(() {
       students = studentsList;
       studentsCode = studentsFromCodeLists;
+    });
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      getStudents();
     });
   }
   @override
@@ -57,7 +67,7 @@ class _AllStudentsState extends State<AllStudents> {
    // double height = MediaQuery.of(context).size.height;
    TextTheme textTheme = Theme.of(context).textTheme;
    ColorScheme colorScheme = Theme.of(context).colorScheme;
-   getStudents();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Students Class ${arguments["class"]} ${arguments["board"]}'),
@@ -76,7 +86,7 @@ class _AllStudentsState extends State<AllStudents> {
     );
   }
 }
-
+//ignore: must_be_immutable
 class StudentTile extends StatefulWidget {
   Student? student;
   StudentCode? studentCode;
@@ -112,6 +122,7 @@ class _StudentTileState extends State<StudentTile> {
                   color: colorScheme.onPrimary
                 ),
               ),
+
               SizedBox(
                   // width: screenWidth*0.15,
                   height: screenWidth*0.1,
@@ -120,18 +131,30 @@ class _StudentTileState extends State<StudentTile> {
                         padding: EdgeInsets.symmetric(
                             horizontal: screenWidth*0.02
                         ),
-                        foregroundColor: colorScheme.onSecondary,
-                        backgroundColor: colorScheme.secondary
+                        elevation: 0,
+                        foregroundColor: colorScheme.onPrimary,
+                        backgroundColor: colorScheme.primary
                     ),
                       onPressed: (){},
-                      child: Icon(Icons.edit),))
+                      child: const Icon(Icons.edit,size: 20,),))
             ],
           ),
-          (widget.student != null) ? Text('Fees : ') : Text('Fees : ${widget.studentCode!.fees}',style: textTheme.titleMedium!.copyWith(
+          Text('Fees : ${widget.student?.fees ?? widget.studentCode!.fees}',style: textTheme.titleMedium!.copyWith(
               color: colorScheme.onPrimary
           ),),
+          SizedBox(
+            height: screenWidth*0.005,
+          ),
+          Text('No of Installments Paid : None',style: textTheme.titleMedium!.copyWith(
+              color: colorScheme.onPrimary
+          ),),
+          Text("Batch : 1",
+            style: textTheme.titleMedium!.copyWith(
+                color: colorScheme.onPrimary
+            ),
+          ),
           if (widget.student == null) ElevatedButton.icon(
-              icon: FaIcon(FontAwesomeIcons.whatsapp),
+              icon: const FaIcon(FontAwesomeIcons.whatsapp),
               style: ElevatedButton.styleFrom(
                 foregroundColor: Theme.of(context).colorScheme.onTertiary,
                   backgroundColor: Theme.of(context).colorScheme.tertiary,

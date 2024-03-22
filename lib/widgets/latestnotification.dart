@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../model/user.dart';
 
 class LatestNotification extends StatefulWidget {
-  const LatestNotification({Key? key}) : super(key: key);
+  const LatestNotification({super.key});
 
   @override
   State<LatestNotification> createState() => _LatestNotificationState();
@@ -35,7 +35,7 @@ class _LatestNotificationState extends State<LatestNotification> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text('You have scored 13/25 in Mathematics Test ',style: textTheme.bodyLarge?.copyWith(color: Theme.of(context).colorScheme.onPrimary,),),
+            Text('You have scored 13/25 in Mathematics Test ',style: textTheme.bodyMedium?.copyWith(color: Theme.of(context).colorScheme.onPrimary,),),
             IconButton(padding:EdgeInsets.zero,onPressed: (){
               setState(() {
                 isVisible = !isVisible;

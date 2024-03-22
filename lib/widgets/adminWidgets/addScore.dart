@@ -1,5 +1,4 @@
 import 'package:ajmeraclassesapp/api/adminapi.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AddScore extends StatefulWidget {
@@ -36,7 +35,7 @@ class _AddScoreState extends State<AddScore> {
           Text(widget.name,style: textTheme.titleLarge!.copyWith(
             color: colorScheme.onPrimary
           ),),
-          Container(
+          SizedBox(
             width: screenWidth*0.33,
             child: Row(
               children: [
@@ -71,7 +70,7 @@ class _AddScoreState extends State<AddScore> {
                         fillColor: colorScheme.secondary),
                   ),
                 ),
-                Container(
+                SizedBox(
                   height: screenWidth*0.08,
                     // width: screenWidth*0.1,
                     child: ElevatedButton(
@@ -86,7 +85,7 @@ class _AddScoreState extends State<AddScore> {
                           setState(() {
                             saved = true;
                           });
-                    }, child: Icon(Icons.check)))
+                    }, child: const Icon(Icons.check)))
               ],
             ),
           ),

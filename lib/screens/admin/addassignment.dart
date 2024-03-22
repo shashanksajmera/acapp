@@ -5,7 +5,6 @@ import 'dart:io';
 import 'package:ajmeraclassesapp/api/adminapi.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 import '../assignment.dart';
 
@@ -44,7 +43,7 @@ class _AddAssignmentState extends State<AddAssignment> {
     Map<String,String> subjectCode = {
       'Maths' : '1','Physics' : '2','Chemistry' : '3','Biology' : '4', 'Science' : '5'
     };
-    String code = "Worksheet_${boardCode[board]!}${classCode[classValue]!}${subjectCode[subject]!}${testDate!.day}${testDate!.month}";
+    String code = "Worksheet_${boardCode[board]!}${classCode[classValue]!}${subjectCode[subject]!}${testDate.day}${testDate.month}";
     print(code);
     return code;
   }
@@ -56,7 +55,7 @@ class _AddAssignmentState extends State<AddAssignment> {
     ColorScheme colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Assignment'),
+        title: const Text('Add Assignment'),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -68,7 +67,7 @@ class _AddAssignmentState extends State<AddAssignment> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Chapter Name',
-                    style: textTheme.titleLarge,),
+                    style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7),),
                   SizedBox(
                     height: screenWidth * 0.1,
                     width: screenWidth * 0.4,
@@ -110,11 +109,11 @@ class _AddAssignmentState extends State<AddAssignment> {
                 children: [
                   Text(
                     'Class',
-                    style: textTheme.titleLarge,
+                    style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7),
                   ),
                   Container(
                     padding: EdgeInsets.all(screenWidth * 0.025),
-                    width: screenWidth * 0.26,
+                    width: screenWidth * 0.27,
                     height: screenWidth * 0.1,
                     decoration: BoxDecoration(
                         color: colorScheme.primary,
@@ -169,7 +168,7 @@ class _AddAssignmentState extends State<AddAssignment> {
                     // color: colorScheme.primary,
                     child: Text(
                       'Board',
-                      style: textTheme.titleLarge,
+                      style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7),
                     ),
                   ),
                   Container(
@@ -197,7 +196,7 @@ class _AddAssignmentState extends State<AddAssignment> {
                       ],
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     width: screenWidth * 0.3,
                     height: screenWidth * 0.1,
                     child: Row(
@@ -230,7 +229,7 @@ class _AddAssignmentState extends State<AddAssignment> {
                 children: [
                   Text(
                     'Subject',
-                    style: textTheme.titleLarge,
+                    style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7),
                   ),
                   Container(
                     padding: EdgeInsets.all(screenWidth * 0.025),
@@ -281,7 +280,7 @@ class _AddAssignmentState extends State<AddAssignment> {
               SizedBox(
                 height: screenWidth * 0.03,
               ),
-              Container(
+              SizedBox(
                 height: screenWidth*0.1,
                 child: ElevatedButton(onPressed: () async {
                   FilePickerResult? result = await FilePicker.platform.pickFiles();
@@ -290,7 +289,7 @@ class _AddAssignmentState extends State<AddAssignment> {
                       filepath = File(result.files.first.path!);
                     });
                   }
-                }, child: Text('Pick Worksheet',style: textTheme.titleLarge!.copyWith(
+                }, child: Text('Pick Worksheet',style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7)!.copyWith(
                   color: colorScheme.onSecondary,
                   // fontWeight: FontWeight.w700
                 ),)),
@@ -298,11 +297,11 @@ class _AddAssignmentState extends State<AddAssignment> {
               SizedBox(
                 height: screenWidth * 0.03,
               ),
-              Container(
+              SizedBox(
                 height: screenWidth*0.1,
                 child: ElevatedButton(onPressed: () async {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => Assignment(file: filepath,)));
-                }, child: Text('Preview',style: textTheme.titleLarge!.copyWith(
+                }, child: Text('Preview',style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7)!.copyWith(
                   color: colorScheme.onSecondary,
                   // fontWeight: FontWeight.w700
                 ),)),
@@ -310,7 +309,7 @@ class _AddAssignmentState extends State<AddAssignment> {
               SizedBox(
                 height: screenWidth * 0.03,
               ),
-              Container(
+              SizedBox(
                 height: screenWidth*0.1,
                 child: ElevatedButton(onPressed: () async {
                     String wsCode = genTestCode();
@@ -322,7 +321,7 @@ class _AddAssignmentState extends State<AddAssignment> {
                       'code' : wsCode
                     };
                     AdminApi.saveAssignment(wsCode, data, filepath);
-                }, child: Text('Save Assignment',style: textTheme.titleLarge!.copyWith(
+                }, child: Text('Save Assignment',style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7)!.copyWith(
                   color: colorScheme.onSecondary,
                   // fontWeight: FontWeight.w700
                 ),)),

@@ -2,7 +2,7 @@ import 'package:ajmeraclassesapp/widgets/assignmentcard.dart';
 import 'package:flutter/material.dart';
 
 class Worksheets extends StatefulWidget {
-  const Worksheets({Key? key}) : super(key: key);
+  const Worksheets({super.key});
 
   @override
   State<Worksheets> createState() => _WorksheetsState();
@@ -14,7 +14,7 @@ class _WorksheetsState extends State<Worksheets> {
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Worksheets'),
+        title: const Text('Worksheets'),
       ),
       body: Padding(
         padding: EdgeInsets.all(screenWidth*0.025),

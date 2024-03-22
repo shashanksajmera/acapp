@@ -23,7 +23,7 @@ class _ManageClassState extends State<ManageClass> {
     board = arguments["board"];
     return Scaffold(
       appBar: AppBar(
-        title: Text('${board} Class ${grade}'),
+        title: Text('$board Class $grade'),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -43,7 +43,7 @@ class _ManageClassState extends State<ManageClass> {
                     },
                     child: Text(
                       'Add Student',
-                      style: textTheme.titleLarge?.copyWith(
+                      style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7)?.copyWith(
                           color: Theme.of(context).colorScheme.onSecondary),
                     )),
               ),
@@ -63,7 +63,7 @@ class _ManageClassState extends State<ManageClass> {
                     },
                     child: Text(
                       'Edit Student Info',
-                      style: textTheme.titleLarge?.copyWith(
+                      style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7)?.copyWith(
                           color: Theme.of(context).colorScheme.onSecondary),
                     )),
               ),
@@ -75,11 +75,11 @@ class _ManageClassState extends State<ManageClass> {
                     style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.all(screenWidth * 0.05 / 4)),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/manage');
+                      Navigator.pushNamed(context, '/showEditScores');
                     },
                     child: Text(
-                      'Show Tests Stats',
-                      style: textTheme.titleLarge?.copyWith(
+                      'Show/Edit Tests Scores',
+                      style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7)?.copyWith(
                           color: Theme.of(context).colorScheme.onSecondary),
                     )),
               ),
@@ -94,7 +94,7 @@ class _ManageClassState extends State<ManageClass> {
                     },
                     child: Text(
                       'Add Scores',
-                      style: textTheme.titleLarge?.copyWith(
+                      style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7)?.copyWith(
                           color: Theme.of(context).colorScheme.onSecondary),
                     )),
               ),
@@ -109,7 +109,7 @@ class _ManageClassState extends State<ManageClass> {
                     },
                     child: Text(
                       'Add Assignments',
-                      style: textTheme.titleLarge?.copyWith(
+                      style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7)?.copyWith(
                           color: Theme.of(context).colorScheme.onSecondary),
                     )),
               ),
@@ -124,7 +124,7 @@ class _ManageClassState extends State<ManageClass> {
                     },
                     child: Text(
                       'Show All Assignments',
-                      style: textTheme.titleLarge?.copyWith(
+                      style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7)?.copyWith(
                           color: Theme.of(context).colorScheme.onSecondary),
                     )),
               ),
@@ -139,7 +139,7 @@ class _ManageClassState extends State<ManageClass> {
                     },
                     child: Text(
                       'Verify Assignment Submissions',
-                      style: textTheme.titleLarge?.copyWith(
+                      style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7)?.copyWith(
                           color: Theme.of(context).colorScheme.onSecondary),
                     )),
               ),

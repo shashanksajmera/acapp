@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -31,7 +30,7 @@ class _ClassTileState extends State<ClassTile> {
         });
       },
       child: Container(
-        margin: EdgeInsets.only(bottom: screenWidth*0.02),
+        margin: EdgeInsets.only(left: screenWidth*0.05,right: screenWidth*0.05, bottom: screenWidth*0.02),
         padding: EdgeInsets.all(screenWidth*0.02),
         width: screenWidth*0.9,
         height: screenWidth*0.40,
@@ -49,11 +48,12 @@ class _ClassTileState extends State<ClassTile> {
                 children: [
                   Text(
                     'Class ${widget.grade}',
-                    style: textTheme.headlineSmall?.copyWith(
-                    color: colorScheme.onPrimary,
+                    style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.3)?.copyWith(
+                      fontWeight: FontWeight.w500,
+                      color: colorScheme.onPrimary,
                   ),),
                   Container(
-                    width: screenWidth*0.5,
+                    width: screenWidth*0.4,
                     height: screenWidth*0.1,
                     padding: EdgeInsets.zero,
                     child: ElevatedButton(
@@ -69,7 +69,7 @@ class _ClassTileState extends State<ClassTile> {
                         },
                         child: Text(
                           'More Options',
-                          style: textTheme.titleLarge?.copyWith(
+                          style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7)?.copyWith(
                               color: Colors.white),
                         )),
                   ),
@@ -79,7 +79,7 @@ class _ClassTileState extends State<ClassTile> {
             SizedBox(
               height: screenWidth*0.02,
             ),
-            Container(
+            SizedBox(
               height: screenWidth*0.1,
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -93,14 +93,14 @@ class _ClassTileState extends State<ClassTile> {
                   },
                   child: Text(
                     'Edit Student Info',
-                    style: textTheme.titleLarge?.copyWith(
+                    style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7)?.copyWith(
                         color: Theme.of(context).colorScheme.onSecondary),
                   )),
             ),
             SizedBox(
               height: screenWidth*0.02,
             ),
-            Container(
+            SizedBox(
               height: screenWidth*0.1,
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -110,7 +110,7 @@ class _ClassTileState extends State<ClassTile> {
                   },
                   child: Text(
                     'Edit Assignment Submissions',
-                    style: textTheme.titleLarge?.copyWith(
+                    style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7)?.copyWith(
                         color: Theme.of(context).colorScheme.onSecondary),
                   )),
             ),

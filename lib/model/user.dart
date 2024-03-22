@@ -15,9 +15,13 @@ class CurrentUserData with ChangeNotifier{
     notifyListeners();
   }
 
-  void updateUserData(Map<String,dynamic> user,String? fieldname,dynamic val){
+  Future<void> updateUserData(Map<String,dynamic> user,Map<String,dynamic> data)async {
     this.user = user;
-    this.user?[fieldname!] = val;
+    data.forEach((key, val) {
+      print('$key $val');
+      this.user?.update(key, (value) => val);
+    });
+    // this.user.update(key, (value) => null);
     notifyListeners();
   }
 }

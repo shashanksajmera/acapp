@@ -57,17 +57,19 @@ class _AddTestScoresState extends State<AddTestScores> {
       'Maths' : '1','Physics' : '2','Chemistry' : '3','Biology' : '4', 'Science' : '5'
     };
     String code = boardCode[board]! + classCode[classValue]! + subjectCode[subject]! + testDate!.day.toString() + testDate!.month.toString();
-    print(code);
+    // print(code);
 
     return code;
   }
   Future<List<Student>> fetchStudents() async {
     var getList = await AdminApi.fetchStudents(board,classValue);
+    var getCodeList = await AdminApi.fetchStudentsfromCode(board, classValue);
+    getList.addAll(getCodeList);
     return getList.map((doc){
       var data = doc.data() as Map<String,dynamic>;
       // print(data);
       return Student(
-        name: data['name']!,
+        name: data['name'] ?? data['firstname'] + data['lastname'],
         grade: data['class']!,
         board: data['board']!,
         uid: doc.id
@@ -84,7 +86,7 @@ class _AddTestScoresState extends State<AddTestScores> {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text('OK'))
+                  child: const Text('OK'))
             ],
             title: Text(message),
           );
@@ -98,7 +100,7 @@ class _AddTestScoresState extends State<AddTestScores> {
     ColorScheme colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Test Scores'),
+        title: const Text('Add Test Scores'),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -111,11 +113,11 @@ class _AddTestScoresState extends State<AddTestScores> {
                 children: [
                   Text(
                     'Class',
-                    style: textTheme.titleLarge,
+                    style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7),
                   ),
                   Container(
                     padding: EdgeInsets.all(screenWidth * 0.025),
-                    width: screenWidth * 0.26,
+                    width: screenWidth * 0.27,
                     height: screenWidth * 0.1,
                     decoration: BoxDecoration(
                         color: colorScheme.primary,
@@ -170,7 +172,7 @@ class _AddTestScoresState extends State<AddTestScores> {
                     // color: colorScheme.primary,
                     child: Text(
                       'Board',
-                      style: textTheme.titleLarge,
+                      style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7),
                     ),
                   ),
                   Container(
@@ -198,7 +200,7 @@ class _AddTestScoresState extends State<AddTestScores> {
                       ],
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     width: screenWidth * 0.3,
                     height: screenWidth * 0.1,
                     child: Row(
@@ -231,7 +233,7 @@ class _AddTestScoresState extends State<AddTestScores> {
                 children: [
                   Text(
                     'Subject',
-                    style: textTheme.titleLarge,
+                    style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7),
                   ),
                   Container(
                     padding: EdgeInsets.all(screenWidth * 0.025),
@@ -290,7 +292,7 @@ class _AddTestScoresState extends State<AddTestScores> {
                     // color: colorScheme.primary,
                     child: Text(
                       'Test Type',
-                      style: textTheme.titleLarge,
+                      style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7),
                     ),
                   ),
                   Container(
@@ -318,7 +320,7 @@ class _AddTestScoresState extends State<AddTestScores> {
                       ],
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     width: screenWidth * 0.3,
                     height: screenWidth * 0.1,
                     child: Row(
@@ -350,17 +352,17 @@ class _AddTestScoresState extends State<AddTestScores> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Date of Test',
-                    style: textTheme.titleLarge,),
-                  Container(
+                    style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7),),
+                  SizedBox(
                     width: screenWidth*0.45,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Text(testDate == null? 'Choose Date' : '${testDate!.day} ${month[testDate!.month]} ${testDate!.year}',style: textTheme.titleLarge,),
+                        Text(testDate == null? 'Choose Date' : '${testDate!.day} ${month[testDate!.month]} ${testDate!.year}',style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7),),
                         SizedBox(
                           width: screenWidth*0.02,
                         ),
-                        Container(
+                        SizedBox(
                           height: screenWidth*0.1,
                           child: ElevatedButton(
                             onPressed: () async {
@@ -377,7 +379,7 @@ class _AddTestScoresState extends State<AddTestScores> {
                               foregroundColor: colorScheme.onSecondary,
                               backgroundColor: colorScheme.secondary
                             ),
-                            child: Icon(Icons.calendar_month),)),
+                            child: const Icon(Icons.calendar_month),)),
                       ],
                     ),
                   ),
@@ -391,7 +393,7 @@ class _AddTestScoresState extends State<AddTestScores> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Maximum Marks',
-                    style: textTheme.titleLarge,),
+                    style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7),),
                   SizedBox(
                     height: screenWidth * 0.1,
                     width: screenWidth * 0.2,
@@ -428,7 +430,7 @@ class _AddTestScoresState extends State<AddTestScores> {
               SizedBox(
                 height: screenWidth * 0.03,
               ),
-              Container(
+              SizedBox(
                 height: screenWidth*0.1,
                 child: ElevatedButton(onPressed: () async {
                     testCode = genTestCode();
@@ -442,8 +444,8 @@ class _AddTestScoresState extends State<AddTestScores> {
                       'visible' : false
                     };
                     AdminApi.createTest(testData, testCode);
-                    showAlert('Test Generated with test code ${testCode}');
-                }, child: Text('Create Test',style: textTheme.titleLarge!.copyWith(
+                    showAlert('Test Generated with test code $testCode');
+                }, child: Text('Create Test',style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7)!.copyWith(
                   color: colorScheme.onSecondary,
                   // fontWeight: FontWeight.w700
                 ),)),
@@ -451,7 +453,7 @@ class _AddTestScoresState extends State<AddTestScores> {
               SizedBox(
                 height: screenWidth * 0.03,
               ),
-              Container(
+              SizedBox(
                 height: screenWidth*0.1,
                 child: ElevatedButton(onPressed: () async {
                     // print(testCode);
@@ -459,7 +461,7 @@ class _AddTestScoresState extends State<AddTestScores> {
                   setState(() {
                     students;
                   });
-                }, child: Text('Fetch Students',style: textTheme.titleLarge!.copyWith(
+                }, child: Text('Fetch Students',style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7)!.copyWith(
                   color: colorScheme.onSecondary,
                   // fontWeight: FontWeight.w700
                 ),)),
@@ -474,18 +476,18 @@ class _AddTestScoresState extends State<AddTestScores> {
                   uid: student.uid,
                   code: testCode,
                 );
-      }).toList(),
+      }),
               SizedBox(
                 height: screenWidth * 0.04,
               ),
               Visibility(
                 visible: students.isNotEmpty,
-                child: Container(
+                child: SizedBox(
                   height: screenWidth*0.1,
                   child: ElevatedButton(onPressed: () async {
                       AdminApi.saveScores(testCode);
                       showAlert("Scores saved for Test $testCode");
-                  }, child: Text('Save Scores',style: textTheme.titleLarge!.copyWith(
+                  }, child: Text('Save Scores',style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7)!.copyWith(
                     color: colorScheme.onSecondary,
                     // fontWeight: FontWeight.w700
                   ),)),

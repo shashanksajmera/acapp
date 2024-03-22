@@ -1,3 +1,4 @@
+import 'package:ajmeraclassesapp/api/student-api.dart';
 import 'package:ajmeraclassesapp/auth/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -6,19 +7,58 @@ import 'package:provider/provider.dart';
 import '../model/user.dart';
 
 class Profile extends StatefulWidget {
-  const Profile({Key? key}) : super(key: key);
+  const Profile({super.key});
 
   @override
   State<Profile> createState() => _ProfileState();
 }
 
 class _ProfileState extends State<Profile> {
-  List<String> subjectList = ['Maths', 'Physics', '', ''];
+  // List<String> subjectList = ['Maths', 'Physics', '', ''];
   List<String> allSubjectList = ['Maths', 'Physics', 'Chemistry', 'Biology'];
-  List<bool> installmentStatus = [true,true,false];
+  List<bool> installmentStatus = [];
+  List<String> isntallmentDates = [];
+  late Map<String,dynamic>? user;
+  Map<String,dynamic>? profile ={};
+  getProfile(){
+    String? uid;
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      uid = user?['uid'];
+      if(user?['role'] == 'Student'){
+        profile = await StudentApi.getStudentData(uid);
+        if(profile?['installmentStatus'] == null){
+          installmentStatus = [false,false];
+        }
+        else{
+          List<dynamic> installments = profile?['installmentStatus'];
+          for (var installment in installments) {
+              installmentStatus.add(true);
+          }
+        }
+        // profile?['board'] = "CBSE";
+        if(profile?['board'] == 'ICSE'){
+          allSubjectList = ['Maths', 'Physics', 'Chemistry', 'Biology'];
+        }
+        else{
+          allSubjectList = ['Maths', 'Science'];
+        }
+        setState(() {
+          profile;
+          installmentStatus;
+          allSubjectList;
+        });
+      }
+    });
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getProfile();
+  }
   @override
   Widget build(BuildContext context) {
-    Map<String,dynamic>? user = Provider.of<CurrentUserData>(context).currentUser;
+    user = Provider.of<CurrentUserData>(context).currentUser;
     double screenWidth = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     TextTheme textTheme = Theme.of(context).textTheme;
@@ -71,7 +111,7 @@ class _ProfileState extends State<Profile> {
               SizedBox(
                 height: screenWidth * 0.04,
               ),
-              Row(
+              (user!['role'] == "Student") ? Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -80,16 +120,16 @@ class _ProfileState extends State<Profile> {
                         ?.copyWith(color: colorScheme.onBackground),
                   ),
                   Text(
-                    '10th',
+                    profile == null ? ' ' :profile!['class'].toString().split(' ')[1],
                     style: textTheme.titleLarge
                         ?.copyWith(color: colorScheme.onBackground),
                   )
                 ],
-              ),
+              ) : Container(),
               SizedBox(
                 height: screenWidth * 0.03,
               ),
-              Row(
+              (user!['role'] == "Student") ? Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -98,12 +138,12 @@ class _ProfileState extends State<Profile> {
                         ?.copyWith(color: colorScheme.onBackground),
                   ),
                   Text(
-                    'ICSE',
+                    profile?['board'],
                     style: textTheme.titleLarge
                         ?.copyWith(color: colorScheme.onBackground),
                   )
                 ],
-              ),
+              ) : Container(),
               SizedBox(
                 height: screenWidth * 0.03,
               ),
@@ -115,10 +155,10 @@ class _ProfileState extends State<Profile> {
                     style: textTheme.titleLarge
                         ?.copyWith(color: colorScheme.onBackground),
                   ),
-                  Container(
+                  SizedBox(
                     width: screenWidth * 0.5,
                     child: Text(
-                      'Podar International School(ICSE)',
+                      profile?['school'] ?? '',
                       // softWrap: true,
                       overflow: TextOverflow.ellipsis,
                       style: textTheme.titleLarge?.copyWith(
@@ -140,42 +180,22 @@ class _ProfileState extends State<Profile> {
                 height: screenWidth * 0.03,
               ),
               Container(
-                  padding: EdgeInsets.zero,
-                  width: screenWidth * 0.84,
-                  height: screenWidth * 0.06,
-                  decoration: BoxDecoration(
-                    color: colorScheme.primary,
-                    borderRadius:
-                        BorderRadius.all(Radius.circular(screenWidth * 0.05)),
-                  ),
-                  child: Row(children: [
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
                     for (int i = 0; i < allSubjectList.length; i++)
                       Container(
                         padding: EdgeInsets.only(top: screenWidth * 0.009),
                         decoration: BoxDecoration(
-                            borderRadius: (i == allSubjectList.length - 1)
-                                ? BorderRadius.only(
-                                    topRight: Radius.circular(screenWidth*0.03),
-                                    bottomRight: Radius.circular(screenWidth*0.03)
-                            )
-                                : null,
-                            border: Border(
-                                right: (i != allSubjectList.length - 1)
-                                    ? BorderSide(
-                                  color: (subjectList[i] == allSubjectList[i]) ? Colors.black : Colors.white
-                                )
-                                    : BorderSide.none,
-                            ),
-                            color: (subjectList[i] == allSubjectList[i])
-                                ? null
-                                : colorScheme.primaryContainer),
-                        width: screenWidth * 0.84 / allSubjectList.length,
+                            borderRadius: BorderRadius.all(Radius.circular(screenWidth*0.0125)),
+                            color: colorScheme.primary),
+                        width: screenWidth * 0.8 / allSubjectList.length,
                         height: screenWidth * 0.06,
                         child: Text(
                           allSubjectList[i],
                           textAlign: TextAlign.center,
                           style: textTheme.bodyLarge
-                              ?.copyWith(color: (subjectList[i] == allSubjectList[i]) ? colorScheme.onPrimary : Colors.white),
+                              ?.copyWith(color: colorScheme.onPrimary),
                         ),
                       )
                   ])),
@@ -190,7 +210,7 @@ class _ProfileState extends State<Profile> {
               SizedBox(
                 height: screenWidth * 0.025,
               ),
-              for(int i=0;i<3;i++)
+              for(int i=0;i<installmentStatus.length;i++)
                 Column(
                   children: [
                     Container(
@@ -213,8 +233,8 @@ class _ProfileState extends State<Profile> {
                             width: screenWidth*0.3,
                             height: screenWidth*0.057,
                             decoration: BoxDecoration(
-                              color: installmentStatus[i] ? Color(0xFF005D14)
-                                  : Color(0xFF93000A),
+                              color: installmentStatus[i] ? const Color(0xFF005D14)
+                                  : const Color(0xFF93000A),
                               borderRadius: BorderRadius.all(Radius.circular(screenWidth*0.285))
                             ),
                             child: Text(installmentStatus[i] ? 'Paid'

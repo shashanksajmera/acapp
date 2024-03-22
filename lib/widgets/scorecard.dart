@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ScoreCard extends StatelessWidget {
-  const ScoreCard({Key? key}) : super(key: key);
+  const ScoreCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +25,17 @@ class ScoreCard extends StatelessWidget {
               children: [
                 Text(
                   'IC10101', // ICse + 10 class + 0 for Maths + 01 for test number
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      color: colorScheme.onPrimary,
-                      fontWeight: FontWeight.lerp(
-                          FontWeight.w500, FontWeight.w600, 0.45)),
+                  style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.16)?.copyWith(
+                    fontWeight: FontWeight.w500,
+                    color: colorScheme.onPrimary,
+                  ),
                 ),
                 Text(
                   'TERM',
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: colorScheme.onPrimary,
-                      ),
+                  style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.16)?.copyWith(
+                    fontWeight: FontWeight.w500,
+                    color: colorScheme.onPrimary,
+                  ),
                 )
               ],
             ),
@@ -45,13 +46,13 @@ class ScoreCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('22 March 2023',
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: colorScheme.onPrimary,
-                        )),
+                    style: textTheme.bodyMedium?.copyWith(
+                      color: colorScheme.onPrimary,
+                    )),
                 Text('Test Type',
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: colorScheme.onPrimary,
-                        )),
+                    style: textTheme.bodyMedium?.copyWith(
+                      color: colorScheme.onPrimary,
+                    )),
               ],
             ),
             SizedBox(
@@ -60,64 +61,64 @@ class ScoreCard extends StatelessWidget {
             Row(
               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
+                SizedBox(
                   width: screenWidth*0.32,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text('Subject Name',
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                color: colorScheme.onPrimary,
-                              )),
+                          style: textTheme.bodyMedium?.copyWith(
+                              color: colorScheme.onPrimary,
+                            )),
                       SizedBox(
                         height: screenWidth * 0.004,
                       ),
                       Text('Physics',
-                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            color: colorScheme.onPrimary,fontWeight: FontWeight.lerp(
-                              FontWeight.w500, FontWeight.w600, 0.45)
-                          )),
+                          style: textTheme.titleMedium?.copyWith(
+                                color: colorScheme.onPrimary,fontWeight: FontWeight.lerp(
+                                FontWeight.w500, FontWeight.w600, 0.45)
+                            )),
                     ],
                   ),
                 ),
-                Container(
+                SizedBox(
                   width: screenWidth*0.275,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text('Maximum Marks',
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                color: colorScheme.onPrimary,
-                              )),
+                          style: textTheme.bodyMedium?.copyWith(
+                              color: colorScheme.onPrimary,
+                            )),
                       SizedBox(
                         height: screenWidth * 0.004,
                       ),
                       Text('30',
-                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            color: colorScheme.onPrimary,fontWeight: FontWeight.lerp(
-                              FontWeight.w500, FontWeight.w600, 0.45)
-                          )),
+                          style: textTheme.titleMedium?.copyWith(
+                                color: colorScheme.onPrimary,fontWeight: FontWeight.lerp(
+                                FontWeight.w500, FontWeight.w600, 0.45)
+                            )),
                     ],
                   ),
                 ),
-                Container(
+                SizedBox(
                   width: screenWidth*0.275,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text('Marks Scored',
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                color: colorScheme.onPrimary,
-                              ),
+                          style: textTheme.bodyMedium?.copyWith(
+                              color: colorScheme.onPrimary,
+                            ),
                       textAlign: TextAlign.right,),
                       SizedBox(
                         height: screenWidth * 0.004,
                       ),
                       Text('20',
-                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            color: colorScheme.onPrimary,fontWeight: FontWeight.lerp(
-                              FontWeight.w500, FontWeight.w600, 0.45)
-                          ),
+                          style: textTheme.titleMedium?.copyWith(
+                                color: colorScheme.onPrimary,fontWeight: FontWeight.lerp(
+                                FontWeight.w500, FontWeight.w600, 0.45)
+                            ),
                       textAlign: TextAlign.right,),
                     ],
                   ),

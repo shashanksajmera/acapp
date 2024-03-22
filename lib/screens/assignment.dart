@@ -1,12 +1,11 @@
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 // import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class Assignment extends StatefulWidget {
-  const Assignment({Key? key,required this.file}) : super(key: key);
+  const Assignment({super.key,required this.file});
   final File file;
   @override
   State<Assignment> createState() => _AssignmentState();

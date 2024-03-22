@@ -1,17 +1,11 @@
-import 'dart:io';
 
 import 'package:ajmeraclassesapp/widgets/questionoftheday.dart';
-import 'package:ajmeraclassesapp/widgets/scorecard.dart';
 import 'package:ajmeraclassesapp/widgets/scoregrid.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 // import '../../model/assignment.dart';
 import '../../model/user.dart';
-import '../../widgets/adminWidgets/classtile.dart';
-import '../../widgets/latestnotification.dart';
-import '../assignment.dart';
 
 class AdminHome extends StatefulWidget {
   const AdminHome({super.key});
@@ -30,6 +24,7 @@ class _AdminHomeState extends State<AdminHome> {
     // double height = MediaQuery.of(context).size.height;
     TextTheme textTheme = Theme.of(context).textTheme;
     ColorScheme colorScheme = Theme.of(context).colorScheme;
+    // print(textTheme.titleMedium?.fontFamily!);
     return Scaffold(
       appBar: AppBar(
         title: const Image(
@@ -39,7 +34,7 @@ class _AdminHomeState extends State<AdminHome> {
         elevation: 0,
         actions: [
           // IconButton(onPressed: () {}, icon: Icon(Icons.person)),
-          IconButton(onPressed: () {}, icon: Icon(Icons.notifications)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.notifications)),
           PopupMenuButton(
             onSelected: (value) {
               // print(value);
@@ -50,11 +45,11 @@ class _AdminHomeState extends State<AdminHome> {
                 value: '/profile',
                 child: Row(
                   children: [
-                    Icon(Icons.person),
+                    const Icon(Icons.person),
                     SizedBox(
                       width: screenWidth * 0.02,
                     ),
-                    Text('Profile'),
+                    const Text('Profile'),
                   ],
                 ),
               ),
@@ -62,11 +57,11 @@ class _AdminHomeState extends State<AdminHome> {
                 value: '/scores',
                 child: Row(
                   children: [
-                    Icon(Icons.quiz),
+                    const Icon(Icons.quiz),
                     SizedBox(
                       width: screenWidth * 0.02,
                     ),
-                    Text('Test Scores'),
+                    const Text('Test Scores'),
                   ],
                 ),
               ),
@@ -74,11 +69,11 @@ class _AdminHomeState extends State<AdminHome> {
                 value: '/worksheets',
                 child: Row(
                   children: [
-                    Icon(Icons.assignment),
+                    const Icon(Icons.assignment),
                     SizedBox(
                       width: screenWidth * 0.02,
                     ),
-                    Text('Assignments'),
+                    const Text('Assignments'),
                   ],
                 ),
               ),
@@ -86,11 +81,11 @@ class _AdminHomeState extends State<AdminHome> {
                 value: '/refer',
                 child: Row(
                   children: [
-                    Icon(Icons.group),
+                    const Icon(Icons.group),
                     SizedBox(
                       width: screenWidth * 0.02,
                     ),
-                    Text('Refer a Friend'),
+                    const Text('Refer a Friend'),
                   ],
                 ),
               ),
@@ -98,11 +93,11 @@ class _AdminHomeState extends State<AdminHome> {
                 value: '/contact',
                 child: Row(
                   children: [
-                    Icon(Icons.call),
+                    const Icon(Icons.call),
                     SizedBox(
                       width: screenWidth * 0.02,
                     ),
-                    Text('Contact Us'),
+                    const Text('Contact Us'),
                   ],
                 ),
               ),
@@ -112,11 +107,11 @@ class _AdminHomeState extends State<AdminHome> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, '/messages');
+          Navigator.pushNamed(context, '/allchats');
         },
-        child: Icon(Icons.message),
-        backgroundColor: colorScheme.primary,
-        foregroundColor: colorScheme.onPrimary,
+        // backgroundColor: colorScheme.primaryContainer,
+        // foregroundColor: colorScheme.onPrimaryContainer,
+        child: const Icon(Icons.message),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(
@@ -128,8 +123,7 @@ class _AdminHomeState extends State<AdminHome> {
             children: [
               Text(
                 "Hi ${user?['firstname']}",
-                style: textTheme.headlineMedium
-                    ?.copyWith(color: colorScheme.onBackground),
+                style: TextStyle.lerp(textTheme.headlineMedium, textTheme.headlineSmall, 0.5)?.copyWith(fontWeight: FontWeight.w500)
               ),
               // SizedBox(
               //   height: screenWidth*0.0375,
@@ -140,18 +134,18 @@ class _AdminHomeState extends State<AdminHome> {
               ),
               Container(
                 margin: EdgeInsets.only(bottom: screenWidth * 0.0125),
-                child: const Text(
+                child: Text(
                   'Question of the Day',
-                  style: TextStyle(fontSize: 27, color: Colors.white),
+                  style: TextStyle.lerp(textTheme.headlineMedium, textTheme.headlineSmall, 0.5)?.copyWith(fontWeight: FontWeight.w500),
                 ),
               ),
-              QuestionOfTheDay(),
+              const QuestionOfTheDay(),
               SizedBox(
                 height: screenWidth * 0.05,
               ),
-              const Text(
+             Text(
                 'Admin Options',
-                style: TextStyle(fontSize: 27, color: Colors.white),
+                style: TextStyle.lerp(textTheme.headlineMedium, textTheme.headlineSmall, 0.5)?.copyWith(fontWeight: FontWeight.w500),
               ),
               SizedBox(
                 height: screenWidth * 0.03,
@@ -164,7 +158,7 @@ class _AdminHomeState extends State<AdminHome> {
                   },
                   child: Text(
                     'Register New Student',
-                    style: textTheme.titleLarge?.copyWith(
+                    style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7)?.copyWith(
                         color: Theme.of(context).colorScheme.onSecondary),
                   )),
               ElevatedButton(
@@ -175,7 +169,8 @@ class _AdminHomeState extends State<AdminHome> {
                   },
                   child: Text(
                     'Manage Students',
-                    style: textTheme.titleLarge?.copyWith(
+                    style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7)?.copyWith(
+                        // fontWeight: FontWeight.w400,
                         color: Theme.of(context).colorScheme.onSecondary),
                   )),
               ElevatedButton(
@@ -186,7 +181,7 @@ class _AdminHomeState extends State<AdminHome> {
                   },
                   child: Text(
                     'Add Test Scores',
-                    style: textTheme.titleLarge?.copyWith(
+                    style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7)?.copyWith(
                         color: Theme.of(context).colorScheme.onSecondary),
                   )),
               ElevatedButton(
@@ -198,17 +193,17 @@ class _AdminHomeState extends State<AdminHome> {
                   },
                   child: Text(
                     'Add Assignments',
-                    style: textTheme.titleLarge?.copyWith(
+                    style: TextStyle.lerp(textTheme.titleLarge, textTheme.titleMedium, 0.7)?.copyWith(
                         color: Theme.of(context).colorScheme.onSecondary),
                   )),
               SizedBox(
                 height: screenWidth * 0.03,
               ),
-              const Text(
+              Text(
                 'Latest Tests',
-                style: TextStyle(fontSize: 27, color: Colors.white),
+                style: TextStyle.lerp(textTheme.headlineMedium, textTheme.headlineSmall, 0.5)?.copyWith(fontWeight: FontWeight.w500)
               ),
-              ScoreGrid()
+              const ScoreGrid()
             ],
           ),
         ),
